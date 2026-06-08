@@ -4,15 +4,19 @@ import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 const FormMain = () => {
   const [eyeBtn, setEyeBtn] = useState("Eye");
   const [passwordType, setPasswordType] = useState("password");
-  const [cnic, setCnic] = useState(" ");
-  const [password, setPassword] = useState("");
+  const [userDetail, setUserDetail] = useState({});
+  const [arr, setArr] = useState([]);
+
+  const handleChange = (e) => {
+    setUserDetail({ ...userDetail, [e.target.id]: e.target.value });
+  };
 
   const getInputVal = () => {
-    console.log("hello");
-    
-    console.log("CNIC:", cnic);
-    console.log("Password:", password);
+    console.log("User Detail:", userDetail);
+    console.log("CNIC:", userDetail.cnic);
+    console.log("Password:", userDetail.password); 
   };
+
   const togglePassword = () => {
     if (eyeBtn === "Eye") {
       setEyeBtn("EyeOff");
@@ -22,6 +26,7 @@ const FormMain = () => {
       setPasswordType("password");
     }
   };
+
   return (
     <div className="flex flex-col gap-2 mt-5">
       <h2 className="font-semibold">Login</h2>
@@ -33,23 +38,30 @@ const FormMain = () => {
         className="flex flex-col gap-2 mt-5 text-sm"
         onSubmit={(e) => e.preventDefault()}
       >
+        
         <label htmlFor="cnic">CNIC *</label>
         <input
           type="text"
           id="cnic"
           className="border border-gray-300 p-2 rounded-md"
-          onChange={(e) => setCnic(e.target.value)}
+          onChange={handleChange}
+          required
         />
         <label htmlFor="password">Password *</label>
-        <div className="border flex border-gray-300 p-2 rounded-md relative w-full">
+        <div className="border flex border-gray-300 p-2 rounded-md items-center w-full focus-within:outline-2">
           <input
             type={passwordType}
             id="password"
-            className=" outline-none w-full"
-            onChange={(e) => setPassword(e.target.value)}
+            className="outline-none w-full"
+            onChange={handleChange}
+            required
           />
           <div className="text-sm text-gray-500" onClick={togglePassword}>
-            {eyeBtn === "Eye" ? <RiEyeLine size={16} /> : <RiEyeOffLine size={16} />}
+            {eyeBtn === "Eye" ? (
+              <RiEyeLine size={16} />
+            ) : (
+              <RiEyeOffLine size={16} />
+            )}
           </div>
         </div>
         <button
