@@ -5,7 +5,7 @@ import LoginForm from './Component/LoginForm'
 
 const App = () => {
   return (
-    <div className='flex flex-col items-center h-screen bg-gray-100'>
+    <div className='flex flex-col items-center h-screen bg-white'>
       <Header/>
       <LoginForm/>
     </div>
