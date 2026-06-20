@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import Swal from "sweetalert2";
 
-const FormMain = () => {
+const FormMain = (props) => {
   const [eyeBtn, setEyeBtn] = useState("Eye");
   const [passwordType, setPasswordType] = useState("password");
   const [userDetail, setUserDetail] = useState({ cnic: "", password: "" });
@@ -11,7 +11,7 @@ const FormMain = () => {
 
   const handleChange = (e) => {
     setUserDetail({ ...userDetail, [e.target.name]: e.target.value });
-    r
+    r;
   };
 
   const getInputVal = () => {
@@ -22,7 +22,7 @@ const FormMain = () => {
       userDetail.cnic.trim() === "" ||
       userDetail.password.trim() === "" ||
       userDetail.password.length < 5 ||
-      userDetail.cnic.length < 13 
+      userDetail.cnic.length < 13
     ) {
       setErr(true);
     } else {
@@ -68,8 +68,24 @@ const FormMain = () => {
         {err && userDetail.cnic.trim() === "" ? (
           <p className="text-red-500 text-xs">CNIC is required</p>
         ) : null}
-        {err && (userDetail.cnic.length < 13 && userDetail.cnic.length > 0) ? (
-          <p className="text-red-500 text-xs">Please enter exactly 13 numbers</p>
+        {err && userDetail.cnic.length < 13 && userDetail.cnic.length > 0 ? (
+          <p className="text-red-500 text-xs">
+            Please enter exactly 13 numbers
+          </p>
+        ) : null}
+        {!props.changeBtn ? (
+          <div className="flex flex-col gap-2 ">
+            <label htmlFor="DOB">DOB *</label>
+            <span className=" border border-gray-300 p-2 rounded-md focus-within:outline-2">
+              <input
+              type="date"
+              id="DOB"
+              name="DOB"
+              className=" w-1/3 outline-none"
+              onChange={handleChange}
+            />
+            </span>
+          </div>
         ) : null}
         <label htmlFor="password">Password *</label>
         <div className="border flex border-gray-300  rounded-md items-center w-full pr-2 focus-within:outline-2">
@@ -94,14 +110,18 @@ const FormMain = () => {
         {err && userDetail.password.trim() === "" ? (
           <p className="text-red-500 text-xs">Password is required</p>
         ) : null}
-        {err && (userDetail.password.length < 5 && userDetail.password.length > 0) ? (
-          <p className="text-red-500 text-xs">Password must be at least 5 characters long</p>
+        {err &&
+        userDetail.password.length < 5 &&
+        userDetail.password.length > 0 ? (
+          <p className="text-red-500 text-xs">
+            Password must be at least 5 characters long
+          </p>
         ) : null}
         <button
-          className="bg-blue-500 cursor-pointer text-white py-2 rounded-md active:scale-95 mt-4 hover:bg-blue-600 transition duration-200"
+          className="bg-blue-500 cursor-pointer uppercase text-white py-2 rounded-md active:scale-95 mt-4 hover:bg-blue-600 transition duration-200"
           onClick={getInputVal}
         >
-          LOGIN
+          {props.btnText}
         </button>
       </form>
     </div>

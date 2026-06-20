@@ -1,10 +1,10 @@
 import React from "react";
 
-const FormTop = () => {
+const FormTop = (props) => {
   return (
     <div className="flex p-1 items-center justify-center bg-gray-100 rounded-lg gap-2 ">
-      <button className="py-1 w-1/2  text-sm rounded-lg text-gray-600 cursor-pointer focus-within:shadow-sm focus-within:text-black focus-within:bg-white ">Login</button>
-      <button className=" py-1 w-1/2 text-sm rounded-lg text-gray-600 cursor-pointer focus-within:shadow-sm focus-within:text-black focus-within:bg-white ">Create Password</button>
+      <button style={props.changeBtn ? {backgroundColor: "white" ,color:"black" }: null} onClick={props.handleLoginField} className="py-1 w-1/2  text-sm rounded-lg text-gray-600 cursor-pointer">Login</button>
+      <button style={!props.changeBtn ? {backgroundColor: "white" ,color:"black" }: null} onClick={props.handleCreatePasswordField} className=" py-1 w-1/2 text-sm rounded-lg text-gray-600 cursor-pointer ">Create Password</button>
     </div>
   );
 };
