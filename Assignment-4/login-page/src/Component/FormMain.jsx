@@ -3,6 +3,7 @@ import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import Swal from "sweetalert2";
 
 const FormMain = (props) => {
+  console.log(props.btnText)
   const [eyeBtn, setEyeBtn] = useState("Eye");
   const [passwordType, setPasswordType] = useState("password");
   const [userDetail, setUserDetail] = useState({ cnic: "", password: "" });
@@ -11,7 +12,6 @@ const FormMain = (props) => {
 
   const handleChange = (e) => {
     setUserDetail({ ...userDetail, [e.target.name]: e.target.value });
-    r;
   };
 
   const getInputVal = () => {
@@ -48,10 +48,9 @@ const FormMain = (props) => {
 
   return (
     <div className="flex flex-col gap-2 p-5 rounded-md border border-gray-200">
-      <h2 className="font-semibold">Login</h2>
+      <h2 className="font-semibold leading-none tracking-tight">{props.formText[1]}</h2>
       <p className="text-sm text-gray-600">
-        Kindly provide the CNIC number and password used during SMIT course
-        registration.
+        Kindly provide the CNIC number and {props.formText[2]}
       </p>
       <form
         className="flex flex-col gap-2 mt-5 text-sm"
@@ -121,7 +120,7 @@ const FormMain = (props) => {
           className="bg-blue-500 cursor-pointer uppercase text-white py-2 rounded-md active:scale-95 mt-4 hover:bg-blue-600 transition duration-200"
           onClick={getInputVal}
         >
-          {props.btnText}
+          {props.formText[0]}
         </button>
       </form>
     </div>
