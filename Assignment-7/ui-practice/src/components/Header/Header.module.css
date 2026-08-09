@@ -1,0 +1,105 @@
+.header {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 3rem;
+  background-color: #f8cbd3;
+  z-index: 1000;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logoImg {
+  width: 3rem;
+  height: 3rem;
+}
+.logoTxt {
+  font-size: 1.7rem;
+  color: #444;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+.desktopNav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.navItem {
+  text-decoration: none;
+  color: #444;
+  font-size: 1rem;
+  font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+.navItem:hover {
+  color: #000000;
+  scale: 1.1;
+}
+.navItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 2.5px;
+  width: 0;
+  background-color: #000000;
+  transition: width 0.3s ease;
+}
+.navItem:hover::before {
+  width: 100%;
+}
+
+.toggleBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: 1s;
+}
+.mobileNav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  background-color: #f8cbd3;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: -1;
+}
+.open{
+  display: flex;
+  width: 45%;
+}
+
+
+@media (max-width: 768px) {
+  .logoTxt {
+    font-size: 1.3rem;
+  }
+  .logoImg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .desktopNav {
+    display: none;
+  }
+  .toggleBtn {
+    display: flex;
+  }
+}

@@ -1,0 +1,20 @@
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
+// Replace these values with your Firebase project configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBmEGPAU2q5z_4M-hzDPfEZpz1Ds2Zmbhg",
+  authDomain: "miniproject-dcd8d.firebaseapp.com",
+  projectId: "miniproject-dcd8d",
+  storageBucket: "miniproject-dcd8d.firebasestorage.app",
+  messagingSenderId: "757009353596",
+  appId: "1:757009353596:web:c95c8c218076315e1472f9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Realtime Database
+export const database = getDatabase(app);
+
+export default app;
