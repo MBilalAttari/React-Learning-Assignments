@@ -13,7 +13,7 @@ const SignupPage = () => {
     password: "",
     age: "",
     gender: "",
-    country: "",
+    
   });
   const [passwordTypeChange, setPasswordTypeChange] = useState({
     passwordType: "password",
@@ -55,7 +55,7 @@ const SignupPage = () => {
         password: "",
         age: "",
         gender: "",
-        country: "",
+        
       });
       navigate("/userdata");
     } catch (error) {
@@ -162,18 +162,8 @@ const SignupPage = () => {
           <option value="female">Female</option>
           <option value="others">Others</option>
         </select>
-        <label htmlFor="country" className="text-gray-900 mb-2 block">
-           <span className="text-red-500 font-bold" >*</span>  Country
-        </label>
-        <input
-          type="text"
-          id="country"
-          value={userData.country}
-          placeholder="Enter your country"
-          className="border border-gray-300 p-2 text-gray-900 rounded-lg w-full mb-4 outline-none focus-within:border-b-blue-500 focus-within:border-b-2 transition duration-200"
-          onChange={handleChange}
-          required
-        />
+       
+        
         <button
           className="bg-blue-500 w-1/2 cursor-pointer self-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
           type="submit"
