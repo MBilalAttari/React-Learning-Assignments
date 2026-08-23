@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-const DropDown = () => {
+const DropDown = (props) => {
   const [inputVal, setInputVal] = useState({
     day: "",
     month: "",
     year: "",
   });
-  const [DOBValue, setDOBValue] = useState("");
 
   const months = [
     "January",
@@ -24,21 +23,33 @@ const DropDown = () => {
   ];
 
   const currentYear = new Date().getFullYear();
+
   const handleChange = (e) => {
-      setInputVal({...inputVal ,[e.target.name ]: e.target.value} )
-      setDOBValue(`${inputVal.day}-${inputVal.month}-${inputVal.year}`)
-      console.log(DOBValue)
+    const newInputVal = {
+      ...inputVal,
+      [e.target.name]: e.target.value,
+    };
+
+    setInputVal(newInputVal);
+
+    const { day, month, year } = newInputVal;
+
+    if (day && month && year) {
+      props.setValue(`${day}-${month}-${year}`);
+    }
   };
 
   return (
     <div className="flex w-full gap-3">
       {/* Month */}
-      <div className="relative flex-1">
+      <div className="relative flex-1 ">
         <select
-        name="month"
+          name="month"
           value={inputVal.month}
           onChange={handleChange}
-          className="h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px]  text-gray-500  transition-all hover:border-gray-400"
+          className={`h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px] transition-all hover:border-gray-400 ${
+            inputVal.month ? "text-black" : "text-gray-400"
+          }`}
         >
           <option value="" disabled>
             Month
@@ -65,10 +76,12 @@ const DropDown = () => {
       {/* Day */}
       <div className="relative flex-1">
         <select
-        name="day"
+          name="day"
           value={inputVal.day}
           onChange={handleChange}
-          className="h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px]  text-gray-500  transition-all hover:border-gray-400"
+          className={`h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px] transition-all hover:border-gray-400 ${
+            inputVal.day ? "text-black" : "text-gray-400"
+          }`}
         >
           <option value="" disabled>
             Day
@@ -95,10 +108,12 @@ const DropDown = () => {
       {/* Year */}
       <div className="relative flex-1">
         <select
-        name="year"
+          name="year"
           value={inputVal.year}
           onChange={handleChange}
-          className="h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px]  text-gray-500  transition-all hover:border-gray-400"
+          className={`h-14.5 w-full appearance-none rounded-xl border border-gray-300 bg-white px-4 pr-10 text-[15px] transition-all hover:border-gray-400 ${
+            inputVal.year ? "text-black" : "text-gray-400"
+          }`}
         >
           <option value="" disabled>
             Year
